@@ -6,16 +6,15 @@ class ModernPlayfairApp:
         self.root = root
         self.root.title("Advanced Playfair Cipher System")
         self.root.geometry("500x600")
-        self.root.configure(bg="#1e1e2e")  # Dark Background
+        self.root.configure(bg="#1e1e2e") 
 
-        # Style Configuration
         style = ttk.Style()
         style.theme_use('default')
         style.configure("TNotebook", background="#1e1e2e", borderwidth=0)
         style.configure("TNotebook.Tab", background="#313244", foreground="white", padding=[10, 5])
         style.map("TNotebook.Tab", background=[("selected", "#89b4fa")], foreground=[("selected", "#1e1e2e")])
 
-        # Creating Tabs (Pages)
+        
         self.notebook = ttk.Notebook(root)
         self.page1 = tk.Frame(self.notebook, bg="#1e1e2e")
         self.page2 = tk.Frame(self.notebook, bg="#1e1e2e")
@@ -28,20 +27,20 @@ class ModernPlayfairApp:
         self.setup_page2()
 
     def setup_page1(self):
-        # Page 1 UI - Title
+    
         tk.Label(self.page1, text="PLAYFAIR CIPHER", font=("Helvetica", 20, "bold"), bg="#1e1e2e", fg="#89b4fa").pack(pady=20)
 
-        # Key Input
+        
         tk.Label(self.page1, text="Secret Key:", bg="#1e1e2e", fg="#cdd6f4", font=("Arial", 10)).pack()
         self.key_entry = tk.Entry(self.page1, font=("Arial", 12), bg="#313244", fg="white", insertbackground="white", borderwidth=0, justify='center')
         self.key_entry.pack(pady=5, ipady=5, ipadx=10)
 
-        # Message Input
+        
         tk.Label(self.page1, text="Your Message:", bg="#1e1e2e", fg="#cdd6f4", font=("Arial", 10)).pack(pady=(10,0))
         self.msg_entry = tk.Text(self.page1, height=4, width=40, font=("Arial", 11), bg="#313244", fg="white", insertbackground="white", borderwidth=0)
         self.msg_entry.pack(pady=5, padx=20)
 
-        # Buttons
+        
         btn_frame = tk.Frame(self.page1, bg="#1e1e2e")
         btn_frame.pack(pady=20)
 
@@ -51,13 +50,13 @@ class ModernPlayfairApp:
         self.dec_btn = tk.Button(btn_frame, text="DECRYPT", command=self.decrypt_action, bg="#f38ba8", fg="#1e1e2e", font=("Arial", 10, "bold"), width=12, relief="flat")
         self.dec_btn.pack(side="left", padx=10)
 
-        # Result Output
+        
         tk.Label(self.page1, text="Result Output:", bg="#1e1e2e", fg="#fab387", font=("Arial", 10, "bold")).pack()
         self.result_box = tk.Text(self.page1, height=4, width=40, font=("Arial", 11, "bold"), bg="#45475a", fg="#f9e2af", state='disabled', borderwidth=0)
         self.result_box.pack(pady=5, padx=20)
 
     def setup_page2(self):
-        # Page 2 UI - 5x5 Matrix Visualizer
+        
         tk.Label(self.page2, text="5x5 KEY MATRIX", font=("Helvetica", 18, "bold"), bg="#1e1e2e", fg="#f9e2af").pack(pady=20)
         
         self.matrix_container = tk.Frame(self.page2, bg="#1e1e2e")
@@ -94,7 +93,7 @@ class ModernPlayfairApp:
 
     def process(self, text, key, mode):
         matrix = self.get_matrix(key)
-        self.update_matrix_display(matrix) # Update Page 2 matrix
+        self.update_matrix_display(matrix)
         
         text = text.upper().replace('J', 'I').replace(" ", "")
         if len(text) % 2 != 0: text += 'Z'
